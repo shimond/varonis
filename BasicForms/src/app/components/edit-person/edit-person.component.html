@@ -1,0 +1,57 @@
+<div class="pad-it">
+    <h2>Edit person</h2>
+    <form [formGroup]="personForm">
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>First name</mat-label>
+                <input matInput placeholder="first Name" formControlName="firstName">
+            </mat-form-field>
+            <div *ngIf="personForm.controls.firstName.errors as firstNameErrors"> {{firstNameErrors | json }} </div>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Last name</mat-label>
+                <input matInput placeholder="last  Name" formControlName="lastName">
+            </mat-form-field>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>Age</mat-label>
+                <input matInput placeholder="age" formControlName="age" type="number">
+            </mat-form-field>
+            <div *ngIf="personForm.controls.age.errors as ageErrors"> {{ageErrors | json }} </div>
+        </div>
+        <div> Is admin <input type="checkbox" formControlName="isAdmin" placeholder="isAdmin">
+        </div>
+        <div>
+            <h2>Form errror</h2>
+            <div> {{personForm.errors | json }} </div>
+        </div>
+    </form>
+    <button mat-raised-button color="primary" type="button" [disabled]="personForm.invalid"
+            (click)="save()">Save</button>
+    <table>
+        <thead>
+            <tr>
+                <th>Real object</th>
+                <th>Form value</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <pre>{{person | json}}</pre>
+                </td>
+                <td>
+                    <pre>{{personForm.getRawValue() | json}}</pre>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <ol>
+        <li>Value : {{personForm.value | json}}</li>
+        <li>Valid : {{personForm.valid}}</li>
+        <li>Dirty: {{personForm.dirty}}</li>
+        <li>Disabled: {{personForm.disabled}}</li>
+    </ol>
+</div>
