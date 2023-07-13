@@ -1,0 +1,7 @@
+<div *ngFor="let formControl of valuesArray.controls; let i= index">
+    <ng-container *ngIf="itemTemplate">
+        <div *ngTemplateOutlet="itemTemplate;context:{index: i,control: formControl}"></div>
+    </ng-container>
+    <button mat-raised-button color="accent" (click)="remove(i)">Remove</button>
+</div>
+<button mat-raised-button color="primary" (click)="add()">Add</button>

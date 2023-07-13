@@ -14,12 +14,42 @@
                 <input matInput placeholder="last  Name" formControlName="lastName">
             </mat-form-field>
         </div>
+        <div class="number-age">
+            <app-number-edit formControlName="age"></app-number-edit>
+        </div>
+        <div>
+            <app-generic-form-array formControlName="hobbies"
+                                    [itemTemplate]="itemTemplate">
+                <ng-template #itemTemplate let-item="control" let-i="index">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Value of {{i + 1}}</mat-label>
+                        <input matInput placeholder="value" [formControl]="item">
+                    </mat-form-field>
+                </ng-template>
+            </app-generic-form-array>
+        </div>
         <div>
             <mat-form-field appearance="outline">
-                <mat-label>Age</mat-label>
-                <input matInput placeholder="age" formControlName="age" type="number">
+                <mat-label>Start date</mat-label>
+                <input matInput [matDatepicker]="picker" formControlName="start">
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
             </mat-form-field>
-            <div *ngIf="personForm.controls.age.errors as ageErrors"> {{ageErrors | json }} </div>
+        </div>
+        <div>
+            <mat-form-field appearance="outline">
+                <mat-label>End date</mat-label>
+                <input matInput [matDatepicker]="pickerEnd" formControlName="end">
+                <mat-datepicker-toggle matIconSuffix [for]="pickerEnd"></mat-datepicker-toggle>
+                <mat-datepicker #pickerEnd></mat-datepicker>
+            </mat-form-field>
+        </div>
+        <div>
+            <app-generic-form-array formControlName="addresses" [itemTemplate]="itemOfAddress">
+                <ng-template #itemOfAddress let-item="control">
+                    <app-address-input [formControl]="item"></app-address-input>
+                </ng-template>
+            </app-generic-form-array>
         </div>
         <div> Is admin <input type="checkbox" formControlName="isAdmin" placeholder="isAdmin">
         </div>
