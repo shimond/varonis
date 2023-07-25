@@ -31,7 +31,18 @@ export class GenericFormArrayComponent<T = string> implements ControlValueAccess
         this.callBack(o);
       }
     })
+    //await this.waitForNextCycle();
   }
+
+  waitForNextCycle(delay: number = 0) {
+
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(null);
+      }, 5000);
+    });
+  }
+
 
   writeValue(values: T[]): void {
     if (!values) {
@@ -51,6 +62,7 @@ export class GenericFormArrayComponent<T = string> implements ControlValueAccess
   registerOnTouched(fn: any): void {
 
   }
+
   setDisabledState?(isDisabled: boolean): void {
     if (isDisabled) {
       this.valuesArray.disable();

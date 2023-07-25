@@ -11,12 +11,14 @@ import { NumberEditComponent } from '../number-edit/number-edit.component';
 import { AddressInputComponent } from '../address-input/address-input.component';
 import { StringListEditComponent } from '../string-list-edit/string-list-edit.component';
 import { GenericFormArrayComponent } from '../generic-form-array/generic-form-array.component';
+import { SigPadComponent } from '../sig-pad/sig-pad.component';
 
 
 @Component({
   selector: 'app-edit-person',
   standalone: true,
   imports: [
+    SigPadComponent,
     GenericFormArrayComponent,
     StringListEditComponent,
     AddressInputComponent,
@@ -36,7 +38,10 @@ export class EditPersonComponent implements OnInit {
 
   person: Person = {
     start: new Date(), end: new Date(),
-    firstName: 'David', lastName: 'Levi', age: 82, isAdmin: true,
+    firstName: 'David',
+    lastName: 'Levi',
+    signature: null,
+    age: 82, isAdmin: true,
     addresses: [{
       country: 'Israel',
       city: 'Tel-aviv',
@@ -51,6 +56,7 @@ export class EditPersonComponent implements OnInit {
     isAdmin: new FormControl<boolean>(false, []),
     start: new FormControl<Date | null>(null, []),
     end: new FormControl<Date | null>(null, []),
+    signature: new FormControl<string | null>(null, []),
     addresses: new FormControl<Address[]>([]),
     hobbies: new FormControl<string[]>([])
   }, { validators: [this.validateDates] });
@@ -59,11 +65,13 @@ export class EditPersonComponent implements OnInit {
   constructor(private readonly fb: FormBuilder) {
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
     this.personForm.patchValue(this.person);
     this.personForm.controls.age.disable();
     this.personForm.valueChanges.subscribe((x: any) => console.log(x));
   }
+
+
 
   save() {
     this.person = this.personForm.getRawValue() as Person;

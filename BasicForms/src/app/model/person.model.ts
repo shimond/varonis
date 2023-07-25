@@ -5,6 +5,7 @@ export interface Person {
     isAdmin: boolean;
     start: Date;
     end: Date;
+    signature: string | null;
     hobbies?: string[];
     addresses: Address[];
 }

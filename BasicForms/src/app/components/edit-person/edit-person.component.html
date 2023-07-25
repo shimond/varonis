@@ -54,6 +54,9 @@
         <div> Is admin <input type="checkbox" formControlName="isAdmin" placeholder="isAdmin">
         </div>
         <div>
+            <app-sig-pad formControlName="signature"></app-sig-pad>
+        </div>
+        <div>
             <h2>Form errror</h2>
             <div> {{personForm.errors | json }} </div>
         </div>
@@ -73,7 +76,7 @@
                     <pre>{{person | json}}</pre>
                 </td>
                 <td>
-                    <pre>{{personForm.getRawValue() | json}}</pre>
+                    <!-- <pre>{{personForm.getRawValue() | json}}</pre> -->
                 </td>
             </tr>
         </tbody>
@@ -85,3 +88,5 @@
         <li>Disabled: {{personForm.disabled}}</li>
     </ol>
 </div>
+
+<img *ngIf="personForm.value.signature" [src]="personForm.value.signature">
