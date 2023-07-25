@@ -1,0 +1,8 @@
+.item {
+    margin: 10px;
+
+    &.special {
+        background-color: gold;
+        border: 1px solid black;
+    }
+}
