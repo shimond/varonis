@@ -1,0 +1,17 @@
+<h1>My App</h1>
+<div>
+  <a [routerLink]="['/']">Home</a>| <a [routerLink]="['/','about']">About</a>
+  <button (click)="navigateToRoute()">Navigate by code</button>
+</div>
+<div>
+  <a routerLink="/admin">Admin pages</a>
+  <a routerLink="/">Home</a> | <a routerLink="/about">About</a> | <a routerLink="/kefel">Kefel</a> | <a
+     routerLink="/kefel" [queryParams]="{size:5}">Kefel 5</a> 
+     | <a routerLink="/kefel" [queryParams]="{size:3}">Kefel
+    3</a>
+</div>
+<div>
+  <marquee>My app marquee</marquee>
+</div>
+<router-outlet></router-outlet>
+<footer> My app footer </footer>
